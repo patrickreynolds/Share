@@ -18,7 +18,9 @@ xcuserdata
 .DS_Store
 .*.DS_Store
 .*.xccheckout
-*.xcuserstate
+.*.xcuserstate
+.xcuserstate
+xcuserstate
 
 # !xcshareddata/
 # xcshareddata/*

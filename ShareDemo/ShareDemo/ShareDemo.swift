@@ -10,18 +10,22 @@ import UIKit
 
 class ShareDemo: UIViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var buttonShareImage: UIButton!
     @IBOutlet weak var buttonAddImage: UIButton!
     @IBOutlet weak var imageViewSelectedImagePreview: UIImageView!
 
-    var selectedImage: UIImage?
+    // MARK: Properties
+    private var selectedImage: UIImage?
 
+    // MARK: View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
     }
-    
-    func updateUI() {
+
+    // MARK: UI Helpers
+    private func updateUI() {
         if let image = selectedImage {
             showImage(image)
             showButtonAddImage(false)
@@ -31,8 +35,8 @@ class ShareDemo: UIViewController {
             enableButtonShareImage(false)
         }
     }
-    
-    func showButtonAddImage(show: Bool) {
+
+    private func showButtonAddImage(show: Bool) {
         if show {
             buttonAddImage.alpha = 1
             view.bringSubviewToFront(buttonAddImage)
@@ -40,8 +44,8 @@ class ShareDemo: UIViewController {
             buttonAddImage.alpha = 0
         }
     }
-    
-    func enableButtonShareImage(enable: Bool) {
+
+    private func enableButtonShareImage(enable: Bool) {
         if enable {
             UIView.animateWithDuration(0.3, animations: { [weak self] in
                 self?.buttonShareImage.enabled = true
@@ -54,8 +58,8 @@ class ShareDemo: UIViewController {
             }, completion: nil)
         }
     }
-    
-    func showImage(image: UIImage) {
+
+    private func showImage(image: UIImage) {
         UIView.animateWithDuration(0.15, animations: { [weak self] in
             self?.imageViewSelectedImagePreview.alpha = 0
             }, completion: { _ in
@@ -66,6 +70,7 @@ class ShareDemo: UIViewController {
         })
     }
 
+    // MARK: Actions
     @IBAction func selectImage(sender: AnyObject) {
         if let _ = sender as? UIButton {
             selectImageFromCameraRoll()
@@ -80,7 +85,8 @@ class ShareDemo: UIViewController {
         }
     }
     
-    func selectSourceForImage(image: UIImage) {
+    // MARK: Share action sheet
+    private func selectSourceForImage(image: UIImage) {
         let optionMenu = UIAlertController(title: nil, message: "Choose Source", preferredStyle: .ActionSheet)
 
         // Save Image
@@ -91,6 +97,7 @@ class ShareDemo: UIViewController {
             }
         })
 
+        // Text Image
         let textAction = UIAlertAction(title: "Text", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             Share.defaultInstance.sendImageToSource(.Text, image: image, presentingViewController: self) { error in
@@ -98,27 +105,31 @@ class ShareDemo: UIViewController {
             }
         })
 
+        // Email Image
         let emailAction = UIAlertAction(title: "Email", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             Share.defaultInstance.sendImageToSource(.Email, image: image, presentingViewController: self) { error in
                 print("\(error)")
             }
         })
-        
+
+        // Tweet Image
         let tweetAction = UIAlertAction(title: "Twitter", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             Share.defaultInstance.sendImageToSource(.Twitter, image: image, presentingViewController: self) { error in
                 print("\(error)")
             }
         })
-        
+
+        // Post Image
         let postAction = UIAlertAction(title: "Facebook", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             Share.defaultInstance.sendImageToSource(.FaceBook, image: image, presentingViewController: self) { error in
                 print("\(error)")
             }
         })
-        
+
+        // Cancel Share
         let cancelAction = UIAlertAction(title: "Nevermind", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
                 print("Canceled")
@@ -131,25 +142,26 @@ class ShareDemo: UIViewController {
         optionMenu.addAction(postAction)
         optionMenu.addAction(cancelAction)
 
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        presentViewController(optionMenu, animated: true, completion: nil)
     }
 }
 
+// MARK: Image Selection Methods
 extension ShareDemo: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func selectImageFromCameraRoll() {
+    private func selectImageFromCameraRoll() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
         presentViewController(picker, animated: true, completion: nil)
     }
-    
+
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[String:AnyObject]) {
         var newImage: UIImage
-        
+
         if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             newImage = possibleImage
         } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
@@ -157,13 +169,10 @@ extension ShareDemo: UINavigationControllerDelegate, UIImagePickerControllerDele
         } else {
             return
         }
-        
+
         dismissViewControllerAnimated(true) { [weak self] in
             self?.selectedImage = newImage
             self?.updateUI()
         }
     }
-    
 }
-
-
