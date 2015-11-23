@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Share Demo-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ShareDemo" customModule="ShareDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOd-Y2-Rke" userLabel="Image Selector">
+                                <rect key="frame" x="0.0" y="28" width="375" height="375"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5x5-Dy-Gym" userLabel="+">
+                                        <rect key="frame" x="162" y="163" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="4gK-9L-URz"/>
+                                            <constraint firstAttribute="height" constant="50" id="ZMT-nU-J0Y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="selectImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TDb-zJ-W4a"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x2o-F2-5ac">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="5x5-Dy-Gym" firstAttribute="centerY" secondItem="GOd-Y2-Rke" secondAttribute="centerY" id="5hz-Rd-BXg"/>
+                                    <constraint firstAttribute="trailing" secondItem="x2o-F2-5ac" secondAttribute="trailing" id="D5s-hh-Oaj"/>
+                                    <constraint firstAttribute="bottom" secondItem="x2o-F2-5ac" secondAttribute="bottom" id="RZr-UR-NDx"/>
+                                    <constraint firstItem="x2o-F2-5ac" firstAttribute="top" secondItem="GOd-Y2-Rke" secondAttribute="top" id="Ts0-14-rYB"/>
+                                    <constraint firstAttribute="width" secondItem="GOd-Y2-Rke" secondAttribute="height" multiplier="1:1" id="bEI-7g-hgh"/>
+                                    <constraint firstItem="x2o-F2-5ac" firstAttribute="leading" secondItem="GOd-Y2-Rke" secondAttribute="leading" id="jG3-cC-L0w"/>
+                                    <constraint firstItem="5x5-Dy-Gym" firstAttribute="centerX" secondItem="GOd-Y2-Rke" secondAttribute="centerX" id="lgZ-Wg-3lA"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="e2i-wt-rMU" appends="YES" id="Zd4-Mt-4Ug"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwP-vH-YYR">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EtA-HL-baC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareImageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="by5-QO-88h"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GOd-Y2-Rke" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1cZ-Pa-W5e"/>
+                            <constraint firstAttribute="trailing" secondItem="lwP-vH-YYR" secondAttribute="trailing" id="B1j-d3-g7x"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lwP-vH-YYR" secondAttribute="bottom" id="Vrp-sy-aCq"/>
+                            <constraint firstItem="GOd-Y2-Rke" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="k5K-dl-wCv"/>
+                            <constraint firstAttribute="trailing" secondItem="GOd-Y2-Rke" secondAttribute="trailing" id="pFL-L1-DRH"/>
+                            <constraint firstItem="lwP-vH-YYR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wTH-UM-h4t"/>
+                            <constraint firstItem="GOd-Y2-Rke" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="xMc-iI-ZnX"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="buttonAddImage" destination="5x5-Dy-Gym" id="Vti-UU-7Ju"/>
+                        <outlet property="buttonShareImage" destination="lwP-vH-YYR" id="aC6-Et-XbT"/>
+                        <outlet property="imageViewSelectedImagePreview" destination="x2o-F2-5ac" id="9E6-hk-cCr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="e2i-wt-rMU">
+                    <connections>
+                        <action selector="selectImage:" destination="BYZ-38-t0r" id="pf8-jY-DQ6"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="339.5" y="388.5"/>
+        </scene>
+    </scenes>
+</document>
